@@ -1,0 +1,107 @@
+<ion-pane xmlns="http://www.w3.org/1999/html">
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">Signup</h1>
+  </ion-header-bar>
+
+  <ion-content class="padding">
+
+    <form name="signinForm" ng-submit="register()" novalidate>
+
+      <fieldset style="border:none;" ng-disabled="submitting">
+      <div class="list list-inset">
+
+      <!-- <label class="item item-input">
+          <span>{{message}}</span>
+      </label>  -->
+
+       <label class="item item-input item-button-right">
+        <span class="input-label">First Name</span>
+        <input type="text" placeholder="First Name" name="firstname"
+               ng-model="user.firstname"
+               ng-required="true">
+        <button ng-show="signinForm.firstname.$touched && signinForm.firstname.$invalid"
+                class="button button-icon ion ion-alert assertive"></button>
+        <button ng-show="signinForm.firstname.$touched && signinForm.firstname.$valid"
+                class="button button-icon ion ion-checkmark-round balanced"></button>
+      </label>
+
+      <label class="item item-input item-button-right">
+        <span class="input-label">Last Name</span>
+        <input type="text" placeholder="Last Name" name="lastname"
+               ng-model="user.lastname"
+               ng-required="true">
+        <button ng-show="signinForm.lastname.$touched && signinForm.lastname.$invalid"
+                class="button button-icon ion ion-alert assertive"></button>
+        <button ng-show="signinForm.lastname.$touched && signinForm.lastname.$valid"
+                class="button button-icon ion ion-checkmark-round balanced"></button>
+      </label>
+
+      <label class="item item-input item-button-right">
+        <span class="input-label">Email</span>
+        <input type="email" placeholder="Email" name="email"
+               ng-model="user.email"
+               ng-required="true"
+               ng-blur="checkEmailAvailable(signinForm.email.$valid,user.email)"
+               ng-disabled="emailCheck"
+               ng-focus="removeEmailMarks(signinForm.email.$valid)">
+
+        <button ng-show="signinForm.email.$touched && signinForm.email.$invalid"
+                class="button button-icon ion ion-alert assertive"></button>
+        <button ng-show="signinForm.email.$touched && signinForm.email.$valid && emailCheck"
+          class="button button-icon"><ion-spinner icon="ios-small"></ion-spinner></button>
+        <button ng-show="signinForm.email.$valid && emailAvailable"
+                class="button button-icon ion ion-checkmark-round balanced"></button>
+        <button ng-show="signinForm.email.$valid && emailNotAvailable"
+                class="button button-icon ion ion-close-round assertive"></button>
+      </label>
+      <label class="item item-input"
+             ng-show="signinForm.email.$valid && emailNotAvailable">
+        <span class="assertive">Email ID already registered</span>
+      </label>
+
+      <label class="item item-input item-button-right">
+        <span class="input-label">Mobile</span>
+        <input type="tel" placeholder="Mobile" name="mobile"
+               ng-model="user.mobile"
+               ng-required="true"
+               ng-blur="checkMobileAvailable(signinForm.mobile.$valid,user.mobile)"
+               ng-disabled="mobileCheck"
+               ng-focus="removeMobileMarks(signinForm.mobile.$valid)">
+        <button ng-show="signinForm.mobile.$touched && signinForm.mobile.$invalid"
+                class="button button-icon ion ion-alert assertive"></button>
+        <button ng-show="signinForm.mobile.$touched && signinForm.mobile.$valid && mobileCheck"
+                class="button button-icon"><ion-spinner icon="ios-small"></ion-spinner></button>
+        <button ng-show="signinForm.mobile.$valid && mobileAvailable"
+                class="button button-icon ion ion-checkmark-round balanced"></button>
+        <button ng-show="signinForm.mobile.$valid && mobileNotAvailable"
+                class="button button-icon ion ion-close-round assertive"></button>
+      </label>
+      <label class="item item-input"
+             ng-show="signinForm.mobile.$valid && mobileNotAvailable">
+        <span class="assertive">Mobile Number already registered</span>
+      </label>
+
+      <label class="item item-input item-button-right">
+        <span class="input-label">Password</span>
+        <input type="password" placeholder="Password" name="password"
+               ng-model="user.password"
+               ng-required="true"
+               ng-minlength="6">
+        <button ng-show="signinForm.password.$touched && signinForm.password.$invalid"
+                class="button button-icon ion ion-alert assertive"></button>
+        <button ng-show="signinForm.password.$touched && signinForm.password.$valid"
+                class="button button-icon ion ion-checkmark-round balanced"></button>
+      </label>
+      <label class="item item-input"
+             ng-show="signinForm.password.$touched && signinForm.password.$invalid">
+          <span class="assertive">Password should be at least 6 Characters long</span>
+      </label>
+    </div>
+    <button class="button button-block button-positive"
+            ng-disabled="signinForm.$invalid || !emailAvailable || emailCheck || !mobileAvailable || mobileCheck">Submit</button>
+
+      </fieldset>
+    </form>
+
+  </ion-content>
+</ion-pane>
