@@ -59,57 +59,57 @@ angular.module('starter.controllers',[])
             $scope.emailAvailable = false;
       };
 
-  $scope.removeMobileMarks = function (valid){
+      $scope.removeMobileMarks = function (valid){
 
-    if(valid)
-    {
-        if($scope.mobileNotAvailable)
-          $scope.mobileNotAvailable = false;
+        if(valid)
+        {
+            if($scope.mobileNotAvailable)
+              $scope.mobileNotAvailable = false;
 
-        if($scope.mobileAvailable)
-          $scope.mobileAvailable = false;
-    }
+            if($scope.mobileAvailable)
+              $scope.mobileAvailable = false;
+        }
 
-  };
+      };
 
-  $scope.checkMobileAvailable = function (valid,mobile) {
+      $scope.checkMobileAvailable = function (valid,mobile) {
 
-    if(valid)
-    {
-      if($scope.mobileAvailable)
-        $scope.mobileAvailable = false;
-
-      $scope.mobileCheck = true;
-
-      $http.get('http://localhost/producty/checkMobile.php?mobile='+mobile)
-        .then(function (response) {
-          // success in GET method
-          // response contains actual HTTP response with status values etc.
-          // eg response.status will be 200
-          // response.data has the data of the URL eg JSON data
-
-          if(response.data.Mystatus=='Success') {
-            $scope.mobileCheck = false;
-            $scope.mobileAvailable = true;
-          }
-          else {
-            $scope.mobileCheck = false;
+        if(valid)
+        {
+          if($scope.mobileAvailable)
             $scope.mobileAvailable = false;
-            $scope.mobileNotAvailable = true;
-            //console.log(response);
-          }
 
-        }, function () {
-          // error in GET method. Network problems or server down or DNS lookup problem etc
-          $scope.mobileCheck = false;
+          $scope.mobileCheck = true;
+
+          $http.get('http://localhost/producty/checkMobile.php?mobile='+mobile)
+            .then(function (response) {
+              // success in GET method
+              // response contains actual HTTP response with status values etc.
+              // eg response.status will be 200
+              // response.data has the data of the URL eg JSON data
+
+              if(response.data.Mystatus=='Success') {
+                $scope.mobileCheck = false;
+                $scope.mobileAvailable = true;
+              }
+              else {
+                $scope.mobileCheck = false;
+                $scope.mobileAvailable = false;
+                $scope.mobileNotAvailable = true;
+                //console.log(response);
+              }
+
+            }, function () {
+              // error in GET method. Network problems or server down or DNS lookup problem etc
+              $scope.mobileCheck = false;
+              $scope.mobileAvailable = false;
+              $scope.mobileNotAvailable = true;
+            });
+
+        }
+
+        else
           $scope.mobileAvailable = false;
-          $scope.mobileNotAvailable = true;
-        });
-
-    }
-
-    else
-      $scope.mobileAvailable = false;
-  };
+      };
   }
 ]);
