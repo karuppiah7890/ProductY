@@ -1,6 +1,6 @@
 angular.module('starter.controllers',[])
 
-.controller('SigninCtrl',[ '$scope', '$http' , function ($scope,$http) {
+.controller('SignupCtrl',[ '$scope', '$http' , function ($scope,$http) {
 
       $scope.register = function () {
         $scope.submitting = true;

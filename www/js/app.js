@@ -26,19 +26,19 @@ angular.module('starter', ['ionic' , 'starter.controllers'])
 .config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-      .state('signin',{
-          url : '/signin',
+      .state('signup',{
+          url : '/signup',
           views : {
 
-            'signin-view' : {
-                templateUrl : 'templates/signin.html',
-                controller : 'SigninCtrl'
+            'signup-view' : {
+                templateUrl : 'templates/signup.html',
+                controller : 'SignupCtrl'
             }
 
           }
 
-      })
+      });
 
-      $urlRouterProvider.otherwise('/signin');
+      $urlRouterProvider.otherwise('/signup');
 
 });

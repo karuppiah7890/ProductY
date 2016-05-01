@@ -5,7 +5,7 @@
 
   <ion-content class="padding">
 
-    <form name="signinForm" ng-submit="register()" novalidate>
+    <form name="signupForm" ng-submit="register()" novalidate>
 
       <fieldset style="border:none;" ng-disabled="submitting">
       <div class="list list-inset">
@@ -19,9 +19,9 @@
         <input type="text" placeholder="First Name" name="firstname"
                ng-model="user.firstname"
                ng-required="true">
-        <button ng-show="signinForm.firstname.$touched && signinForm.firstname.$invalid"
+        <button ng-show="signupForm.firstname.$touched && signupForm.firstname.$invalid"
                 class="button button-icon ion ion-alert assertive"></button>
-        <button ng-show="signinForm.firstname.$touched && signinForm.firstname.$valid"
+        <button ng-show="signupForm.firstname.$touched && signupForm.firstname.$valid"
                 class="button button-icon ion ion-checkmark-round balanced"></button>
       </label>
 
@@ -30,9 +30,9 @@
         <input type="text" placeholder="Last Name" name="lastname"
                ng-model="user.lastname"
                ng-required="true">
-        <button ng-show="signinForm.lastname.$touched && signinForm.lastname.$invalid"
+        <button ng-show="signupForm.lastname.$touched && signupForm.lastname.$invalid"
                 class="button button-icon ion ion-alert assertive"></button>
-        <button ng-show="signinForm.lastname.$touched && signinForm.lastname.$valid"
+        <button ng-show="signupForm.lastname.$touched && signupForm.lastname.$valid"
                 class="button button-icon ion ion-checkmark-round balanced"></button>
       </label>
 
@@ -41,21 +41,21 @@
         <input type="email" placeholder="Email" name="email"
                ng-model="user.email"
                ng-required="true"
-               ng-blur="checkEmailAvailable(signinForm.email.$valid,user.email)"
+               ng-blur="checkEmailAvailable(signupForm.email.$valid,user.email)"
                ng-disabled="emailCheck"
-               ng-focus="removeEmailMarks(signinForm.email.$valid)">
+               ng-focus="removeEmailMarks(signupForm.email.$valid)">
 
-        <button ng-show="signinForm.email.$touched && signinForm.email.$invalid"
+        <button ng-show="signupForm.email.$touched && signupForm.email.$invalid"
                 class="button button-icon ion ion-alert assertive"></button>
-        <button ng-show="signinForm.email.$touched && signinForm.email.$valid && emailCheck"
+        <button ng-show="signupForm.email.$touched && signupForm.email.$valid && emailCheck"
           class="button button-icon"><ion-spinner icon="ios-small"></ion-spinner></button>
-        <button ng-show="signinForm.email.$valid && emailAvailable"
+        <button ng-show="signupForm.email.$valid && emailAvailable"
                 class="button button-icon ion ion-checkmark-round balanced"></button>
-        <button ng-show="signinForm.email.$valid && emailNotAvailable"
+        <button ng-show="signupForm.email.$valid && emailNotAvailable"
                 class="button button-icon ion ion-close-round assertive"></button>
       </label>
       <label class="item item-input"
-             ng-show="signinForm.email.$valid && emailNotAvailable">
+             ng-show="signupForm.email.$valid && emailNotAvailable">
         <span class="assertive">Email ID already registered</span>
       </label>
 
@@ -64,20 +64,20 @@
         <input type="tel" placeholder="Mobile" name="mobile"
                ng-model="user.mobile"
                ng-required="true"
-               ng-blur="checkMobileAvailable(signinForm.mobile.$valid,user.mobile)"
+               ng-blur="checkMobileAvailable(signupForm.mobile.$valid,user.mobile)"
                ng-disabled="mobileCheck"
-               ng-focus="removeMobileMarks(signinForm.mobile.$valid)">
-        <button ng-show="signinForm.mobile.$touched && signinForm.mobile.$invalid"
+               ng-focus="removeMobileMarks(signupForm.mobile.$valid)">
+        <button ng-show="signupForm.mobile.$touched && signupForm.mobile.$invalid"
                 class="button button-icon ion ion-alert assertive"></button>
-        <button ng-show="signinForm.mobile.$touched && signinForm.mobile.$valid && mobileCheck"
+        <button ng-show="signupForm.mobile.$touched && signupForm.mobile.$valid && mobileCheck"
                 class="button button-icon"><ion-spinner icon="ios-small"></ion-spinner></button>
-        <button ng-show="signinForm.mobile.$valid && mobileAvailable"
+        <button ng-show="signupForm.mobile.$valid && mobileAvailable"
                 class="button button-icon ion ion-checkmark-round balanced"></button>
-        <button ng-show="signinForm.mobile.$valid && mobileNotAvailable"
+        <button ng-show="signupForm.mobile.$valid && mobileNotAvailable"
                 class="button button-icon ion ion-close-round assertive"></button>
       </label>
       <label class="item item-input"
-             ng-show="signinForm.mobile.$valid && mobileNotAvailable">
+             ng-show="signupForm.mobile.$valid && mobileNotAvailable">
         <span class="assertive">Mobile Number already registered</span>
       </label>
 
@@ -87,18 +87,18 @@
                ng-model="user.password"
                ng-required="true"
                ng-minlength="6">
-        <button ng-show="signinForm.password.$touched && signinForm.password.$invalid"
+        <button ng-show="signupForm.password.$touched && signupForm.password.$invalid"
                 class="button button-icon ion ion-alert assertive"></button>
-        <button ng-show="signinForm.password.$touched && signinForm.password.$valid"
+        <button ng-show="signupForm.password.$touched && signupForm.password.$valid"
                 class="button button-icon ion ion-checkmark-round balanced"></button>
       </label>
       <label class="item item-input"
-             ng-show="signinForm.password.$touched && signinForm.password.$invalid">
+             ng-show="signupForm.password.$touched && signupForm.password.$invalid">
           <span class="assertive">Password should be at least 6 Characters long</span>
       </label>
     </div>
     <button class="button button-block button-positive"
-            ng-disabled="signinForm.$invalid || !emailAvailable || emailCheck || !mobileAvailable || mobileCheck">Submit</button>
+            ng-disabled="signupForm.$invalid || !emailAvailable || emailCheck || !mobileAvailable || mobileCheck">Submit</button>
 
       </fieldset>
     </form>
