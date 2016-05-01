@@ -1,9 +1,40 @@
 angular.module('starter.controllers',[])
 
-.controller('SignupCtrl',[ '$scope', '$http' , function ($scope,$http) {
+.controller('SignupCtrl',[ '$scope' ,'$http', '$state' , function ($scope,$http,$state) {
 
-      $scope.register = function () {
+      $scope.register = function (user) {
         $scope.submitting = true;
+
+        console.log(user);
+
+        //$http.post('http://localhost/producty/customerSignup.php',user) - Shortcut Method Doesn't Work
+        // Above thing results in "POST Request Failed" error. We need to pass some Content-Type header
+        // to resolve it
+
+          $http({
+            method : "POST",
+            url : 'http://localhost/producty/customerSignup.php',
+            data : user,
+            headers: {'Content-Type': undefined }
+          })
+          .then(function (response) {
+
+              console.log(response);
+
+              if(response.data.Mystatus=='Success')
+              $state.go('home');
+
+              else
+              {
+                $scope.submitting = false;
+                console.log(response.data.Mystatus);
+              }
+          },function () {
+            $scope.submitting = false;
+            console.log("Post Request failed");
+          });
+
+
       };
 
       $scope.removeEmailMarks = function (valid){

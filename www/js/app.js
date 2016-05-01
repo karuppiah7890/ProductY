@@ -36,7 +36,14 @@ angular.module('starter', ['ionic' , 'starter.controllers'])
             }
 
           }
-
+      })
+      .state('home',{
+          url : '/home',
+          views : {
+            'home-view' :{
+              templateUrl : 'templates/home.html'
+            }
+          }
       });
 
       $urlRouterProvider.otherwise('/signup');
