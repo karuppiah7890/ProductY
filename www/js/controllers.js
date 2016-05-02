@@ -8,13 +8,13 @@ angular.module('starter.controllers',[])
         console.log(user);
         $scope.show();
 
-        //$http.post('http://localhost/producty/customerSignup.php',user) - Shortcut Method Doesn't Work
+        //$http.post('http://54.169.109.234/producty/customerSignup.php',user) - Shortcut Method Doesn't Work
         // Above thing results in "POST Request Failed" error. We need to pass some Content-Type header
         // to resolve it
 
           $http({
             method : "POST",
-            url : 'http://localhost/producty/customerSignup.php',
+            url : 'http://54.169.109.234/customerSignup.php',
             data : user,
             headers: {'Content-Type': undefined }
           })
@@ -75,7 +75,7 @@ angular.module('starter.controllers',[])
 
             $scope.emailCheck = true;
 
-            $http.get('http://localhost/producty/checkEmail.php?email='+email)
+            $http.get('http://54.169.109.234/checkEmail.php?email='+email)
               .then(function (response) {
                   // success in GET method
                   // response contains actual HTTP response with status values etc.
@@ -128,7 +128,7 @@ angular.module('starter.controllers',[])
 
           $scope.mobileCheck = true;
 
-          $http.get('http://localhost/producty/checkMobile.php?mobile='+mobile)
+          $http.get('http://54.169.109.234/checkMobile.php?mobile='+mobile)
             .then(function (response) {
               // success in GET method
               // response contains actual HTTP response with status values etc.
@@ -170,7 +170,7 @@ angular.module('starter.controllers',[])
           $scope.show();
 
           $http({
-            url : 'http://localhost/producty/loginUser.php',
+            url : 'http://54.169.109.234/loginUser.php',
             method : 'POST',
             data : user,
             headers : {'Content-Type' : undefined}
