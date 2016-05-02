@@ -1,11 +1,12 @@
 angular.module('starter.controllers',[])
 
-.controller('SignupCtrl',[ '$scope' ,'$http', '$state' , function ($scope,$http,$state) {
+.controller('SignupCtrl',[ '$scope' ,'$http', '$state', '$ionicLoading' , function ($scope,$http,$state,$ionicLoading) {
 
       $scope.register = function (user) {
         $scope.submitting = true;
 
         console.log(user);
+        $scope.show();
 
         //$http.post('http://localhost/producty/customerSignup.php',user) - Shortcut Method Doesn't Work
         // Above thing results in "POST Request Failed" error. We need to pass some Content-Type header
@@ -20,21 +21,36 @@ angular.module('starter.controllers',[])
           .then(function (response) {
 
               console.log(response);
+              $scope.hide();
 
               if(response.data.Mystatus=='Success')
-              $state.go('home');
+              {
+                $scope.submitting = false;
+                $state.go('home');
+              }
 
               else
               {
                 $scope.submitting = false;
                 console.log(response.data.Mystatus);
               }
+
           },function () {
+            $scope.hide();
             $scope.submitting = false;
-            console.log("Post Request failed");
+            console.log("Signup Post Request failed");
           });
 
 
+      };
+
+      $scope.show = function() {
+        $ionicLoading.show({
+          template: 'Signing up...'
+        });
+      };
+      $scope.hide = function(){
+        $ionicLoading.hide();
       };
 
       $scope.removeEmailMarks = function (valid){
@@ -143,4 +159,51 @@ angular.module('starter.controllers',[])
           $scope.mobileAvailable = false;
       };
   }
-]);
+])
+
+.controller('SigninCtrl',['$scope','$http','$state','$ionicLoading',function ($scope, $http, $state,$ionicLoading) {
+
+      $scope.signin = function (user) {
+          $scope.submitting = true;
+
+          console.log(user);
+          $scope.show();
+
+          $http({
+            url : 'http://localhost/producty/loginUser.php',
+            method : 'POST',
+            data : user,
+            headers : {'Content-Type' : undefined}
+          }).then(function (response) {
+
+              console.log(response);
+              $scope.hide();
+
+              if(response.data.Mystatus=='Success')
+              {
+                $scope.submitting = false;
+                $state.go('home');
+              }
+
+              else {
+                $scope.submitting = false;
+                console.log(response.data.Mystatus);
+              }
+
+          },function () {
+            $scope.hide();
+            $scope.submitting = false;
+            console.log("Signin Post Request failed");
+          });
+      };
+
+      $scope.show = function() {
+        $ionicLoading.show({
+          template: 'Signing in...'
+        });
+      };
+      $scope.hide = function(){
+        $ionicLoading.hide();
+      };
+
+}]);

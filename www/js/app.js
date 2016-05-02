@@ -26,6 +26,17 @@ angular.module('starter', ['ionic' , 'starter.controllers'])
 .config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
+      .state('signin',{
+        url : '/signin',
+        views : {
+
+          'signup-view' : {
+            templateUrl : 'templates/signin.html',
+            controller : 'SigninCtrl'
+          }
+
+        }
+      })
       .state('signup',{
           url : '/signup',
           views : {
@@ -46,6 +57,6 @@ angular.module('starter', ['ionic' , 'starter.controllers'])
           }
       });
 
-      $urlRouterProvider.otherwise('/signup');
+      $urlRouterProvider.otherwise('/signin');
 
 });
