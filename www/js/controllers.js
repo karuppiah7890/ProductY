@@ -226,7 +226,7 @@ angular.module('starter.controllers',[])
         $scope.i=0;
         $scope.leftshow=false;
         $scope.rightshow=true;
-        $http.get('http://54.169.109.234/producty/productlist.php')
+        $http.get('http://54.169.109.234/productlist.php')
             .then(function (response) {
                 // success in GET method
                 // response contains actual HTTP response with status values etc.
