@@ -1,0 +1,22 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Product list</h1>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="p in product" ng-click="select(p.id)">
+
+                <a class="item item-thumbnail-left" href="#">
+                    <img src="http://54.169.109.234/producty/productimage.php?id={{p.id}}">
+                    <h2>{{p.name}}</h2>
+                    <p>
+                        Volume:{{p.volume}}
+                        Cost:{{p.price}}
+                    </p>
+                </a>
+
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-modal-view>

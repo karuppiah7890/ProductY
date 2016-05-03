@@ -1,8 +1,41 @@
-<ion-pane>
-  <ion-header-bar class="bar-positive">
-    <h1 class="title">Home</h1>
-  </ion-header-bar>
-  <ion-content class="padding">
-    Welcome Home!
+<ion-view view-title="Home" xmlns="http://www.w3.org/1999/html">
+  <ion-content>
+      <br><br>
+
+   <div class="row row-top">
+       <div class="col-10  col-center">
+           <button class="button button-icon ion-arrow-left-a" ng-disabled="!leftshow" ng-click="left()"></button>
+       </div>
+       <div class="col-80 col-bottom">
+           <div class="list card">
+
+               <div class="item item-avatar-right">
+                   <button class="button button-calm ion-arrow-down-a" ng-click="openlist()"></button>
+                   <b>{{product[i].name}}</b>
+
+               </div>
+
+               <div class="item item-image">
+                   <img src="http://54.169.109.234/producty/productimage.php?id={{i+1}}">
+               </div>
+
+               <a class="item item-icon-left assertive" href="#">
+                   <p>
+                       Volume:{{product[i].volume}}
+                       Cost:{{product[i].price}}
+                   </p>
+               </a>
+
+           </div>
+       </div>
+       <div class="col-10 col-center">
+           <button class="button button-icon ion-arrow-right-a" ng-disabled="!rightshow" ng-click="right()"></button>
+       </div>
+
+
+   </div>
+
+
+
   </ion-content>
-</ion-pane>
+</ion-view>

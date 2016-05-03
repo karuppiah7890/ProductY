@@ -26,7 +26,7 @@ angular.module('starter.controllers',[])
               if(response.data.Mystatus=='Success')
               {
                 $scope.submitting = false;
-                $state.go('home');
+                $state.go('app.home');
               }
 
               else
@@ -182,7 +182,7 @@ angular.module('starter.controllers',[])
               if(response.data.Mystatus=='Success')
               {
                 $scope.submitting = false;
-                $state.go('home');
+                  $state.go('app.home');
               }
 
               else {
@@ -206,4 +206,91 @@ angular.module('starter.controllers',[])
         $ionicLoading.hide();
       };
 
-}]);
+}])
+.controller('AppCtrl',['$scope',function($scope){
+
+
+
+
+
+}
+])
+
+    .controller('HomeCtrl',['$scope','$http','$state','$ionicModal',function ($scope,$http,$state,$ionicModal) {
+
+
+
+
+
+
+        $scope.i=0;
+        $scope.leftshow=false;
+        $scope.rightshow=true;
+        $http.get('http://54.169.109.234/producty/productlist.php')
+            .then(function (response) {
+                // success in GET method
+                // response contains actual HTTP response with status values etc.
+                // eg response.status will be 200
+                // response.data has the data of the URL eg JSON data
+
+                if(response.data.Mystatus=='Success') {
+                    $scope.product=response.data.product;
+                    $scope.prodcount=response.data.prodcount;
+                }
+
+            });
+
+        $scope.left = function () {
+
+            if($scope.i!=0)
+            {
+                $scope.rightshow=true;
+                $scope.i--;
+            }
+            if($scope.i==0)
+                $scope.leftshow=false;
+
+        };
+
+        $scope.right = function () {
+
+            if($scope.i<($scope.prodcount-1)) {
+
+                $scope.leftshow=true;
+                $scope.i++;
+            }
+            if($scope.i==($scope.prodcount-1))
+                $scope.rightshow=false;
+
+        };
+
+        $ionicModal.fromTemplateUrl('templates/plist.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modal = modal;
+        });
+
+        $scope.select=function (id) {
+            if(id==1)
+            {
+                $scope.leftshow = false;
+                $scope.rightshow = true;
+            }
+            if(id==($scope.prodcount))
+            {
+                $scope.leftshow = true;
+                $scope.rightshow = false;
+            }
+            $scope.i=id-1;
+            $scope.modal.hide();
+        };
+
+        $scope.openlist=function () {
+            $scope.modal.show();
+        };
+
+
+
+
+    }
+    ]);

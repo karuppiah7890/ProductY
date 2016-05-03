@@ -48,15 +48,24 @@ angular.module('starter', ['ionic' , 'starter.controllers'])
 
           }
       })
-      .state('home',{
-          url : '/home',
-          views : {
-            'home-view' :{
-              templateUrl : 'templates/home.html'
-            }
-          }
-      });
+        .state('app',{
+            url:'/app',
+            abstract:true,
+            templateUrl:'templates/menu.html',
+            controller : 'AppCtrl'
+        })
 
-      $urlRouterProvider.otherwise('/signin');
+        .state('app.home',{
+            url : '/home',
+            views : {
+                'menuContent' :{
+                    templateUrl : 'templates/home.html',
+                    controller : 'HomeCtrl'
+                }
+            }
+        });
+
+
+    $urlRouterProvider.otherwise('/signin');
 
 });
