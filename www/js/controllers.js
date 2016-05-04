@@ -26,7 +26,7 @@ angular.module('starter.controllers',[])
               if(response.data.Mystatus=='Success')
               {
                 $scope.submitting = false;
-                $state.go('app.home');
+                $state.go('menu.home');
               }
 
               else
@@ -182,7 +182,7 @@ angular.module('starter.controllers',[])
               if(response.data.Mystatus=='Success')
               {
                 $scope.submitting = false;
-                  $state.go('app.home');
+                  $state.go('menu.home');
               }
 
               else {

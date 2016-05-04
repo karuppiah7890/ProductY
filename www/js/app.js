@@ -48,13 +48,13 @@ angular.module('starter', ['ionic' , 'starter.controllers'])
 
           }
       })
-      .state('app',{
-          url:'/app',
+      .state('menu',{
+          url:'/menu',
           abstract:true,
           templateUrl:'templates/menu.html',
           controller : 'AppCtrl'
       })
-      .state('app.home',{
+      .state('menu.home',{
           url : '/home',
           views : {
               'menuContent' :{
