@@ -94,11 +94,27 @@
       </label>
       <label class="item item-input"
              ng-show="signupForm.password.$touched && signupForm.password.$invalid">
-          <span class="assertive">Password should be at least 6 Characters long</span>
+          <span class="assertive">Password should be at least 6 characters long</span>
       </label>
+
+        <label class="item item-input item-button-right">
+          <span class="input-label">Retype Password</span>
+          <input type="password" placeholder="Retype Password" name="repassword"
+                 ng-model="user.repassword"
+                 ng-required="true"
+                 ng-minlength="6">
+          <button ng-show="signupForm.repassword.$touched && signupForm.repassword.$invalid"
+                  class="button button-icon ion ion-alert assertive"></button>
+          <button ng-show="signupForm.repassword.$touched && signupForm.repassword.$valid && user.password==user.repassword"
+                  class="button button-icon ion ion-checkmark-round balanced"></button>
+        </label>
+        <label class="item item-input"
+               ng-show="signupForm.repassword.$touched && (signupForm.repassword.$invalid || user.password!=user.repassword)">
+          <span class="assertive">Passwords don't match</span>
+        </label>
     </div>
     <button class="button button-block button-positive"
-            ng-disabled="signupForm.$invalid || !emailAvailable || emailCheck || !mobileAvailable || mobileCheck">Submit</button>
+            ng-disabled="signupForm.$invalid || !emailAvailable || emailCheck || !mobileAvailable || mobileCheck || user.password!=user.repassword">Submit</button>
 
       </fieldset>
     </form>
