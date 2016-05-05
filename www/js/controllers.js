@@ -2,7 +2,7 @@ angular.module('starter.controllers',[])
 
 .factory('URLService', function () {
 
-  var locally = 1;
+  var locally = 0;
 
   if(locally==1)
     return {
