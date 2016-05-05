@@ -2,16 +2,18 @@ angular.module('starter.controllers',[])
 
 .factory('URLService', function () {
 
-  var locally = 0;
+  var locally = 1;
 
   if(locally==1)
     return {
-      url : 'http://localhost/producty/'
+      url : 'http://localhost/producty/',
+      debug : 1
     };
 
   else
     return {
-      url : 'http://54.169.109.234/'
+      url : 'http://54.169.109.234/',
+      debug : 0
     };
 
 })
@@ -23,14 +25,18 @@ angular.module('starter.controllers',[])
 
       if(id!=null)
       {
+        if(URLService.debug==1)
         console.log('No Signup required. Already Signed in. ID is : ' + id);
+
         $state.go('menu.home');
       }
 
       $scope.register = function (user) {
         $scope.submitting = true;
 
+        if(URLService.debug==1)
         console.log(user);
+
         $scope.show();
 
         //$http.post('http://54.169.109.234/producty/customerSignup.php',user) - Shortcut Method Doesn't Work
@@ -45,7 +51,9 @@ angular.module('starter.controllers',[])
           })
           .then(function (response) {
 
+              if(URLService.debug==1)
               console.log(response);
+
               $scope.hide();
 
               if(response.data.Mystatus=='Success')
@@ -59,12 +67,16 @@ angular.module('starter.controllers',[])
               else
               {
                 $scope.submitting = false;
+
+                if(URLService.debug==1)
                 console.log(response.data.Mystatus);
               }
 
           },function () {
             $scope.hide();
             $scope.submitting = false;
+
+            if(URLService.debug==1)
             console.log("Signup Post Request failed");
           });
 
@@ -109,6 +121,9 @@ angular.module('starter.controllers',[])
                   // eg response.status will be 200
                   // response.data has the data of the URL eg JSON data
 
+                  if(URLService.debug==1)
+                  console.log("Email Check : " + response);
+
                   if(response.data.Mystatus=='Success') {
                     $scope.emailCheck = false;
                     $scope.emailAvailable = true;
@@ -117,7 +132,6 @@ angular.module('starter.controllers',[])
                     $scope.emailCheck = false;
                     $scope.emailAvailable = false;
                     $scope.emailNotAvailable = true;
-                    //console.log(response);
                   }
 
               }, function () {
@@ -162,6 +176,9 @@ angular.module('starter.controllers',[])
               // eg response.status will be 200
               // response.data has the data of the URL eg JSON data
 
+              if(URLService.debug==1)
+                console.log("Mobile Check : " + response);
+
               if(response.data.Mystatus=='Success') {
                 $scope.mobileCheck = false;
                 $scope.mobileAvailable = true;
@@ -170,7 +187,6 @@ angular.module('starter.controllers',[])
                 $scope.mobileCheck = false;
                 $scope.mobileAvailable = false;
                 $scope.mobileNotAvailable = true;
-                //console.log(response);
               }
 
             }, function () {
@@ -195,14 +211,18 @@ angular.module('starter.controllers',[])
 
       if(id!=null)
       {
+        if(URLService.debug==1)
         console.log('No Signin required. Already Signed in. ID is : ' + id);
+
         $state.go('menu.home');
       }
 
       $scope.signin = function (user) {
           $scope.submitting = true;
 
+          if(URLService.debug==1)
           console.log(user);
+
           $scope.show();
 
           $http({
@@ -212,7 +232,9 @@ angular.module('starter.controllers',[])
             headers : {'Content-Type' : undefined}
           }).then(function (response) {
 
+              if(URLService.debug==1)
               console.log(response);
+
               $scope.hide();
 
               if(response.data.Mystatus=='Success')
@@ -225,12 +247,16 @@ angular.module('starter.controllers',[])
 
               else {
                 $scope.submitting = false;
+
+                if(URLService.debug==1)
                 console.log(response.data.Mystatus);
               }
 
           },function () {
             $scope.hide();
             $scope.submitting = false;
+
+            if(URLService.debug==1)
             console.log("Signin Post Request failed");
           });
       };
@@ -262,7 +288,9 @@ angular.module('starter.controllers',[])
 
     if(id!=null)
     {
+      if(URLService.debug==1)
       console.log('At home. ID is : ' + id);
+
       $scope.message = "ID is : " + id;
     }
 
