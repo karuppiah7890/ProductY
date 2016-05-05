@@ -7,7 +7,7 @@
             <ion-item ng-repeat="p in product" ng-click="select(p.id)">
 
                 <a class="item item-thumbnail-left" href="#">
-                    <img ng-src="http://54.169.109.234/productimage.php?id={{p.id}}">
+                    <img ng-src="{{productimageurl}}productimage.php?id={{p.id}}">
                     <h2>{{p.name}}</h2>
                     <p>
                         Volume:{{p.volume}}

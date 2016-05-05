@@ -2,6 +2,8 @@
   <ion-content>
       <br><br>
 
+    <span ng-show="message">{{message}}</span>
+
    <div class="row row-top">
        <div class="col-10  col-center">
            <button class="button button-icon ion-arrow-left-a" ng-disabled="!leftshow" ng-click="left()"></button>
@@ -16,7 +18,7 @@
                </div>
 
                <div class="item item-image">
-                   <img ng-src="http://54.169.109.234/productimage.php?id={{i+1}}">
+                   <img ng-src= "{{productimageurl}}productimage.php?id={{i+1}}">
                </div>
 
                <a class="item item-icon-left assertive" href="#">
