@@ -34,7 +34,6 @@ angular.module('starter', ['ionic' , 'starter.controllers'])
             templateUrl : 'templates/signin.html',
             controller : 'SigninCtrl'
           }
-
         }
       })
       .state('signup',{
@@ -54,6 +53,17 @@ angular.module('starter', ['ionic' , 'starter.controllers'])
           templateUrl:'templates/menu.html',
           controller : 'MenuCtrl'
       })
+
+        .state('menu.settings',{
+            url : '/settings',
+            views : {
+                'menuContent' :{
+                    templateUrl : 'templates/settings.html',
+                    controller : 'SettingCtrl'
+                }
+            }
+        })
+
       .state('menu.home',{
           url : '/home',
           views : {

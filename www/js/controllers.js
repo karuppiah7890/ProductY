@@ -280,6 +280,15 @@ angular.module('starter.controllers',[])
 }
 ])
 
+    .controller('SettingCtrl',['$scope',function($scope){
+
+
+
+
+
+    }
+    ])
+
 .controller('HomeCtrl',['$scope','$http','$state','$ionicModal','URLService', function ($scope,$http,$state,$ionicModal,URLService) {
 
 
