@@ -274,13 +274,35 @@ angular.module('starter.controllers',[])
 .controller('MenuCtrl',['$scope',function($scope){
 
 
-
-
-
 }
 ])
+    .controller('SettingCtrl',[ '$scope' ,'$http', '$state', '$ionicLoading', 'URLService' , function ($scope,$http,$state,$ionicLoading,URLService){
 
-    .controller('SettingCtrl',['$scope',function($scope){
+        var storage = window.localStorage;
+        var id = storage.getItem("id");
+        var user={"id":id};
+
+        $http({
+            url : URLService.url + 'showProfile.php',
+            method : 'POST',
+            data : user,
+            headers : {'Content-Type' : undefined}
+        }).then(function (response) {
+              if(response.data.Mystatus="success")
+              {
+                 $scope.profile=response.data;
+
+              }
+
+
+
+            });
+
+
+
+
+
+
 
 
 
